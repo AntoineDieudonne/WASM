@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Wasm</title>
+		<script src="https://cdn.jsdelivr.net/pyodide/v0.18.1/full/pyodide.js"></script>
+	</head>
+<body>
+	<h1 id="result"></h1>
+	<button id="test" onclick="test()" disabled>Afficher le résultat du calcul</button>
+
+	<script type="text/javascript">
+		function test(){
+				var result = pyodide.globals.get('y_train');
+				document.getElementById('result').textContent = result;
+
+		};
+		async function setupPyodide() {
+			let pyodide = await loadPyodide({
+				indexURL : "https://cdn.jsdelivr.net/pyodide/v0.18.1/full/"
+			});
+			// Pyodide is now ready to use...
+			pyodide.loadPackage('scikit-learn').then(() => {
+				// Scikit-learn is installed
+				pyodide.runPython(`
+
+                  from sklearn.datasets import load_iris
+                  from sklearn.linear_model import LogisticRegression
+
+                  X, y = load_iris(return_X_y = True)
+
+                  lr = LogisticRegression().fit(X, y)
+                  y_train = lr.predict(X).tolist()
+                  `);
+				alert('calculs finis');
+				document.getElementById('test').disabled = false;
+				test();
+			});
+		}
+
+		var pyodide = setupPyodide();
+	</script>
+</body>
+</html>

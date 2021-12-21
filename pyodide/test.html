@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <script src="https://cdn.jsdelivr.net/pyodide/v0.18.1/full/pyodide.js"></script>
+  </head>
+  <body>
+    Pyodide test page <br>
+    Open your browser console to see Pyodide output
+    <script type="text/javascript">
+      async function main(){
+        let pyodide = await loadPyodide({
+          indexURL : "https://cdn.jsdelivr.net/pyodide/v0.18.1/full/"
+        });
+        console.log('version de Python : ' + pyodide.runPython(`
+            import sys
+            sys.version
+        `));
+        console.log(pyodide.runPython("print(1 + 2)"));
+        pyodide.runPython('a = 1001');
+        console.log(pyodide.globals.get('a'))
+      }
+      main();
+    </script>
+  </body>
+</html>
