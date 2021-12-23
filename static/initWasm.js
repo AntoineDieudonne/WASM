@@ -28,5 +28,4 @@ async function loadWasm(){
 	wasm = obj.instance.exports;
 	if(wasm !== undefined) wasmLoaded = true;
 }
-
 loadWasm();

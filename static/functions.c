@@ -16,12 +16,12 @@ unsigned long decToBin(unsigned long decimalNumber)
 EMSCRIPTEN_KEEPALIVE
 unsigned long binToDec(unsigned long binaryNumber)
 {
-	unsigned long dec = 0, rest = 0, pow=0;
+	unsigned long dec = 0, rest = 0, pow=1;
 	while(binaryNumber != 0)
 	{
-		dec = dec * 10 + binaryNumber;
-		binaryNumber /= 2;
-		pow ++;
+		dec += (binaryNumber % 10) * pow;
+		binaryNumber /= 10;
+		pow *= 2;
 	}
 	return dec;
 }
