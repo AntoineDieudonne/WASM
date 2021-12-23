@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Wasm</title>
+	</head>
+<body>
+	<label for="bin">valeur binaire</label>
+	<input type="text" id="bin" onchange="binChanged()" placeholder="Valeur bianire"><br>
+	<label for="bin">valeur décimale</label>
+	<input type="text" id="dec" onchange="decChanged()" placeholder="Valeur décimale"><br>
+	<!--<input type="text" id="hex" onchange="hexChanged()" placeholder="Valeur hexadécimale"><br>-->
+	
+	<script src="/static/initWasm.js"></script>
+	<script src="/static/mainLogic.js"></script>
+</body>
+</html>
