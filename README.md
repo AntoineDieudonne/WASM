@@ -2,7 +2,7 @@
 
 ## How to run
 
-Clone this repo then enter this command to start the flask server.
+Download or clone this repo then enter this command to start the flask server. (you need to have python installed)
 ```sh
 git clone https://github.com/AntoineDieudonne/WASM.git
 pip install flask
@@ -12,9 +12,11 @@ then open this URL in your browser http://127.0.0.1:5000/
 
 ### Limits of the converter
 
-If you put a really big number, there will be an integer overflow. A solution to this problem would be to split the values in an array.
+If you put a really big number, there will be an integer overflow. A solution to this problem would be to split the values in an array to allow unlimited size.
 
 ## How to compile the C code to generate a WASM file
+
+If you want to edit the [functions coded in C](https://github.com/AntoineDieudonne/WASM/blob/main/static/functions.c), you'll need to install emscripten to compile the C to WASM.
 
 ### Install emscripten
 
