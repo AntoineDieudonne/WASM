@@ -12,7 +12,17 @@
 	<label for="bin">valeur hexadécimale</label>
 	<input type="text" id="hex" placeholder="Valeur hexadécimale"><br>
 	
-	<script src="/static/initWasm.js"></script>
+	<script src="/static/converter.js"></script>
 	<script src="/static/mainLogic.js"></script>
+	<script type="text/javascript">
+		// Test du lancement du module
+		Module['onRuntimeInitialized'] = function() {
+		   var pcStr = Module._coucou();
+		   
+		   // Convert C string into JS string
+		   var jsStr = Module.UTF8ToString(pcStr);
+		   console.log("_coucou : " + jsStr);
+		}
+	</script>
 </body>
 </html>

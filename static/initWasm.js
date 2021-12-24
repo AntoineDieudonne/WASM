@@ -1,3 +1,5 @@
+// Functions deprecated !!!
+
 var wasm;
 var wasmLoaded = false;
 

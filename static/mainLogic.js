@@ -4,24 +4,21 @@ var hex = document.getElementById('hex');
 
 // Quand la valeur binaire a changé
 bin.oninput = function(){
-	if(wasmLoaded){
-		let binVal = bin.value;
-		dec.value = wasm.binToDec(binVal);
-	}
+	let binVal = bin.value;
+	dec.value = Module._binToDec(binVal);
+	// Add binToHex
 }
 
 // Quand la valeur décimale a changé
 dec.oninput = function(){
-	if(wasmLoaded){
-		let decVal = dec.value;
-		bin.value = wasm.decToBin(decVal);
-	}
+	let decVal = dec.value;
+	bin.value = Module._decToBin(decVal);
+	hex.value = Module.UTF8ToString(Module._decToHex(decVal));
 }
 
 // Quand la valeur décimale a changé
 hex.oninput = function(){
-	if(wasmLoaded){
-		let hexVal = hex.value;
-		dec.value = wasm.hexToDec('0x' + hexVal);
-	}
+	let hexVal = hex.value;
+	dec.value = Module._hexToDec();
+	// Add hexToBin
 }
