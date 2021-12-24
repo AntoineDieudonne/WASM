@@ -15,9 +15,9 @@ char* coucou()
 }
 
 EMSCRIPTEN_KEEPALIVE
-unsigned long decToBin(unsigned long decimalNumber)
+unsigned long long decToBin(unsigned long long decimalNumber)
 {
-	unsigned long bin = 0, pow = 1;
+	unsigned long long bin = 0, pow = 1;
 	while(decimalNumber != 0)
 	{
 		bin += (decimalNumber % 2) * pow;
@@ -28,9 +28,9 @@ unsigned long decToBin(unsigned long decimalNumber)
 }
 
 EMSCRIPTEN_KEEPALIVE
-unsigned long binToDec(unsigned long binaryNumber)
+unsigned long long binToDec(unsigned long long binaryNumber)
 {
-	unsigned long dec = 0, pow=1;
+	unsigned long long dec = 0, pow=1;
 	while(binaryNumber != 0)
 	{
 		dec += (binaryNumber % 10) * pow;
@@ -41,10 +41,10 @@ unsigned long binToDec(unsigned long binaryNumber)
 }
 
 EMSCRIPTEN_KEEPALIVE
-unsigned long hexToDec(char* hexadecimalNumber)
+unsigned long long hexToDec(char* hexadecimalNumber)
 {
-	unsigned long dec = 0;
-	int pow = 1, val;
+	unsigned long long dec = 0, pow = 1;
+	int val;
 	
 	for(int i = strlen(hexadecimalNumber) - 1; i >= 0; i--)
 	{
@@ -68,7 +68,7 @@ unsigned long hexToDec(char* hexadecimalNumber)
 }
 
 EMSCRIPTEN_KEEPALIVE
-char* decToHex(unsigned long decimalNumber)
+char* decToHex(unsigned long long decimalNumber)
 {
 	char hex[10];
 	char *toReturn;
@@ -102,7 +102,7 @@ char* decToHex(unsigned long decimalNumber)
 }
 
 EMSCRIPTEN_KEEPALIVE
-char* binToHex(unsigned long binaryNumber)
+char* binToHex(unsigned long long binaryNumber)
 {
 	char hex[10];
 	char *toReturn;
@@ -158,9 +158,9 @@ char* binToHex(unsigned long binaryNumber)
 }
 
 EMSCRIPTEN_KEEPALIVE
-unsigned long hexToBin(char* hexadecimalNumber)
+unsigned long long hexToBin(char* hexadecimalNumber)
 {
-	unsigned long bin = 0, pow = 1;
+	unsigned long long bin = 0, pow = 1;
 	for(int i = strlen(hexadecimalNumber) - 1; i >= 0; i--)
 	{
 		switch(hexadecimalNumber[i])

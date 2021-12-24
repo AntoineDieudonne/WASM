@@ -12,9 +12,7 @@ then open this URL in your browser http://127.0.0.1:5000/
 
 ### Limits of the converter
 
-If you put a decimal number over 1023, there will be an integer overflow. My guess is that either the javascript parseInt called implicitly does not support more than 32 bits or emscripten encodes the C integers on a int32 value despite the fact that I declare them as unsigned longs which takes 64 bits.
-
-https://webassembly.github.io/spec/core/syntax/types.html
+If you put a really big number, there will be an integer overflow. A solution to this problem would be to split the values in an array.
 
 ## How to compile the C code to generate a WASM file
 
@@ -32,8 +30,9 @@ follow these tutorials :
 emsdk_env.bat
 
 # Then enter this in the WASM/Static folder
-emcc functions.c -s WASM=1 -o converter.js --no-entry -s "EXPORTED_RUNTIME_METHODS=['UTF8ToString','lengthBytesUTF8','stringToUTF8']" -s "EXPORTED_FUNCTIONS=['_malloc','_free']"
+emcc functions.c -s WASM=1 -o converter.js --no-entry -s "EXPORTED_RUNTIME_METHODS=['UTF8ToString','lengthBytesUTF8','stringToUTF8']" -s "EXPORTED_FUNCTIONS=['_malloc','_free']" -s WASM_BIGINT
 ```
+This generates a WASM file and the functions can be called with a `<script>` reference to the converter.js file in your html file. Then call the function from your JS script like this `Module._coucou()`.
 
 #### Help about passing strings between C and JS
 
