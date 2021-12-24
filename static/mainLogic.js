@@ -6,7 +6,7 @@ var hex = document.getElementById('hex');
 bin.oninput = function(){
 	let binVal = bin.value;
 	dec.value = Module._binToDec(binVal);
-	// Add binToHex
+	hex.value = Module.UTF8ToString(Module._binToHex(binVal));
 }
 
 // Quand la valeur décimale a changé
@@ -16,9 +16,18 @@ dec.oninput = function(){
 	hex.value = Module.UTF8ToString(Module._decToHex(decVal));
 }
 
-// Quand la valeur décimale a changé
+// Quand la valeur hexadécimale a changé
 hex.oninput = function(){
 	let hexVal = hex.value;
-	dec.value = Module._hexToDec();
-	// Add hexToBin
+
+	// Convert the js string to a char*
+	const hexLen = Module.lengthBytesUTF8(hexVal) + 1;
+	hexArg = Module._malloc(hexLen);
+	Module.stringToUTF8(hexVal, hexArg, hexLen);
+
+	dec.value = Module._hexToDec(hexArg);
+	bin.value = Module._hexToBin(hexArg);
+
+	// Free the memory taken by the string
+	Module._free(hexArg);
 }
