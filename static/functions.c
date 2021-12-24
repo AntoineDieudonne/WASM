@@ -89,19 +89,26 @@ char* decToHex(unsigned long decimalNumber)
 		}
 		i++;
 	}
-	hex[i] = '\0';
-	toReturn = hex;
+	char reversedHex[10];
+	int k = 0;
+	for(int j = i - 1; j >= 0; j--)
+	{
+		reversedHex[k] = hex[j];
+		k++;
+	}
+	reversedHex[i] = '\0';
+	toReturn = reversedHex;
 	return toReturn;
 }
 
-// Values are added in the wrong order
 EMSCRIPTEN_KEEPALIVE
 char* binToHex(unsigned long binaryNumber)
 {
 	char hex[10];
 	char *toReturn;
-	int val = 0, i = 0, count = 1, idx = 0, pow = 1;
+	int val = 0, i = 0, count = 1, pow = 1;
 
+	// Values are added in the wrong order
 	while(binaryNumber != 0)
 	{
 		val += (binaryNumber % 2) * pow;
@@ -125,7 +132,6 @@ char* binToHex(unsigned long binaryNumber)
             i++;
         }
         count++;
-		idx++;
 	}
 	if((count - 1) %4 != 0)
     {
@@ -139,8 +145,15 @@ char* binToHex(unsigned long binaryNumber)
         }
         i++;
     }
-	hex[i] = '\0';
-	toReturn = hex;
+	char reversedHex[10];
+	int k = 0;
+	for(int j = i - 1; j >= 0; j--)
+	{
+		reversedHex[k] = hex[j];
+		k++;
+	}
+	reversedHex[i] = '\0';
+	toReturn = reversedHex;
 	return toReturn;
 }
 

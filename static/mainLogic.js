@@ -2,21 +2,21 @@ var bin = document.getElementById('bin');
 var dec = document.getElementById('dec');
 var hex = document.getElementById('hex');
 
-// Quand la valeur binaire a changé
+// When the binary value changed
 bin.oninput = function(){
 	let binVal = bin.value;
 	dec.value = Module._binToDec(binVal);
 	hex.value = Module.UTF8ToString(Module._binToHex(binVal));
 }
 
-// Quand la valeur décimale a changé
+// When the decimal value changed
 dec.oninput = function(){
 	let decVal = dec.value;
 	bin.value = Module._decToBin(decVal);
 	hex.value = Module.UTF8ToString(Module._decToHex(decVal));
 }
 
-// Quand la valeur hexadécimale a changé
+// When the hexadecimal value changed
 hex.oninput = function(){
 	let hexVal = hex.value;
 
