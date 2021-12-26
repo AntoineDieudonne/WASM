@@ -3,6 +3,11 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Wasm</title>
+		<style type="text/css">
+			p{
+				color: red;
+			}
+		</style>
 	</head>
 <body>
 	<h1>Converter</h1><br>
@@ -10,12 +15,17 @@
 	<label for="bin">binary value</label>
 	<input type="text" id="bin">
 	<br>
-	<label for="bin">decimal value</label>
+	<p id="binError" hidden>Bad value format</p>
+	<br>
+	<label for="dec">decimal value</label>
 	<input type="text" id="dec">
 	<br>
-	<label for="bin">hexadecimal value</label>
+	<p id="decError" hidden>Bad value format</p>
+	<br>
+	<label for="hex">hexadecimal value</label>
 	<input type="text" id="hex">
 	<br>
+	<p id="hexError" hidden>Bad value format</p>
 	
 	<script src="/static/converter.js"></script>
 	<script src="/static/mainLogic.js"></script>
